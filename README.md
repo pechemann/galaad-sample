@@ -51,7 +51,7 @@ Book {
 }
 ```
 
-Possible operations are:
+Available operations are:
 
 - `GET /books`
 - `POST /books`
