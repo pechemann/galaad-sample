@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import { RsState, StateType, Application, TransitionConfig, RsTransition, RsMapTransition, HttpStatusCode, HttpMethod, RsTransitionFromState } from 'jsax-rs';
+import { RsState, StateType, Application, TransitionMapping, RsTransition, RsMapTransition, HttpStatusCode, HttpMethod, RsTransitionFromState } from 'jsax-rs';
 import { BOOK_LIST } from '../../mock/BOOK_LIST';
 import { Book } from '../business/Book';
 import { AppStateService } from '../util/AppStateService';
@@ -14,13 +14,13 @@ export class BooksRoutes {
      * Defines the transition for the <code>books</code> resource and the <code>GET</code> HTP method.
      */
     @RsTransitionFromState('getBooks')
-    public getBooksTransition: TransitionConfig;
+    public getBooksTransition: TransitionMapping;
 
     /**
      * Defines the transition for the <code>books/:bookId</code> resource and the <code>GET</code> HTP method.
      */
     @RsTransitionFromState('getBook')
-    public getBookTransition: TransitionConfig;
+    public getBookTransition: TransitionMapping;
 
     /**
      * The reference to the express <code>Router</code> object.
@@ -64,7 +64,7 @@ export class BooksRoutes {
     })
     private getBooks(): void {
         this._router.get('/books', (req: Request, res: Response) => {
-            const appState: Application =this._stateService.getState('getBooks');
+            const appState: Application = this._stateService.getState('getBooks');
             const result: any = {
                 data: BOOK_LIST,
                 application: appState
@@ -144,7 +144,7 @@ export class BooksRoutes {
             if (book) {
                 BOOK_LIST.splice(BOOK_LIST.indexOf(book), 1);
             }
-            const status: HttpStatusCode = book ? HttpStatusCode.NO_CONTENT : HttpStatusCode.NOT_FOUND;
+            const status: HttpStatusCode = book ? HttpStatusCode.OK : HttpStatusCode.NOT_FOUND;
             res.status(status).send({ application: appState });
         });
     }
