@@ -1,0 +1,8 @@
+# Exclude JS files
+/**/*.js
+
+# Exclude node_modules
+node_modules
+
+# Exclude .vscode
+.vscode

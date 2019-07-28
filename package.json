@@ -1,0 +1,27 @@
+{
+  "name": "galaad-sample",
+  "version": "1.0.0",
+  "description": "Galaad framework and JSAX-RS HATEOAS sample application.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pechemann/galaad-sample.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pechemann/galaad-sample/issues"
+  },
+  "homepage": "https://github.com/pechemann/galaad-sample#readme",
+  "author": "Pascal ECHEMANN",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jsax-rs": "0.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.0",
+    "typescript": "^3.5.3"
+  }
+}
