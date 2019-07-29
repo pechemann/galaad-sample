@@ -18,6 +18,6 @@ export class AppStateService {
      * @param stateParams the properties used to resolve resource path tokens.
      */
     public getState(stateName: string, stateParams?: any): any {                 
-        return this._context.getApplicationStateRepresentation(stateName, stateParams);
+        return this._context.getResourceStateRepresentation(stateName, stateParams);
     }
 }
