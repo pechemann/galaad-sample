@@ -2,6 +2,7 @@ import express from 'express';
 import { Express, Router } from 'express';
 import { RsApplication, ApplicationContext, RsHateoasContext, HateoasContext } from 'jsax-rs';
 import { RoutesFactory } from './factory/RoutesFactory';
+import { ServiceContainer } from './ioc/ServiceContainer';
 
 /**
  * JSAX-RS HATEOAS / Galaad sample application.
@@ -24,9 +25,11 @@ export class SampleApplication {
     public run(): void {
         const app: Express = express();
         const router: Router = Router();
+        const container: ServiceContainer = new ServiceContainer();
         const context: ApplicationContext = this._context.getApplicationContext();
         const apiPath: string = context.getApiPath();
-        RoutesFactory.build(router).createRoutes();
+        RoutesFactory.build(container, router).createRoutes();
+        app.use(express.json());
         app.use(apiPath, router);
         app.listen(3000);
         console.log(`application "${context.getName()}" listening on port 3000`);
