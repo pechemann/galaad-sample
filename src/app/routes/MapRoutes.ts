@@ -1,27 +1,15 @@
 import { Router, Request, Response } from 'express';
 import { RsState, StateType, Application, TransitionMapping, RsTransition, RsMapTransition, HttpStatusCode, HttpMethod, RsTransitionFromState } from 'jsax-rs';
 import { Book } from '../business/Book';
+import { AppStateService } from '../service/impl/AppStateService';
 import { ServiceContainer } from '../ioc/ServiceContainer';
 import { BookService } from '../service/BookService';
-import { StateService } from '../service/StateService';
 
 /**
  * The routes associated with the <code>books</code> resource. Allows to manage a collection of <code>Book</code>
  * objects.
  */
-export class BooksRoutes {
-
-    /**
-     * Defines the transition for the <code>books</code> resource and the <code>GET</code> HTP method.
-     */
-    @RsTransitionFromState('getBooks')
-    public getBooksTransition: TransitionMapping;
-
-    /**
-     * Defines the transition for the <code>books/:bookId</code> resource and the <code>GET</code> HTP method.
-     */
-    @RsTransitionFromState('getBook')
-    public getBookTransition: TransitionMapping;
+export class MapRoutes {
 
     /**
      * The reference to the express <code>Router</code> object.
@@ -36,17 +24,18 @@ export class BooksRoutes {
     /**
      * The reference to the service used to create app state representations.
      */
-    private readonly _stateService: StateService;
+    private readonly _stateService: AppStateService;
 
     /**
      * Create a new <code>BooksRoutes</code> instance.
      * 
      * @param {ServiceContainer} container the reference to the app <code>ServiceContainer</code> object.
      * @param {Router} router the reference to the express <code>Router</code> object.
+     * @param {AppStateService} stateService the reference to the service used to create app state representations.
      */
-    constructor(container: ServiceContainer, router: Router) {
+    constructor(container: ServiceContainer, router: Router, stateService: AppStateService) {
         this._router = router;
-        this._stateService = container.get<StateService>('StateService');
+        this._stateService = stateService;
         this._bookService = container.get<BookService>('BookService');
         this.initRoutes();
     }

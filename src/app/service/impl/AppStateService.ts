@@ -1,9 +1,9 @@
 import { HateoasContext, RsHateoasContext } from 'jsax-rs';
 
 /**
- * A basic sevice for creating new app states.
+ * The defaunt implementation of the <code>AppStateService</code> interface.
  */
-export class AppStateService {
+export class AppStateService implements AppStateService {
 
     /**
      * The reference to the application HATEOAS context.
@@ -12,10 +12,14 @@ export class AppStateService {
     private _context: HateoasContext;
 
     /**
-     * Create new app states representations.
-     * 
-     * @param {string} stateName the reference to the state used to create the new representation.
-     * @param {any} stateParams the properties used to resolve resource path tokens.
+     * @inheritdoc
+     */
+    public getName(): string {                 
+        return 'StateService';
+    }
+
+    /**
+     * @inheritdoc
      */
     public getState(stateName: string, stateParams?: any): any {                 
         return this._context.getResourceStateRepresentation(stateName, stateParams);

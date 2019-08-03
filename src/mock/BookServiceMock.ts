@@ -2,7 +2,7 @@
 import { BookService } from '../app/service/BookService';
 import { Book } from '../app/business/Book';
 import { BOOK_LIST } from './BOOK_LIST';
-import { BookFactory } from '../app/util/BookFactory';
+import { BookFactory } from '../app/factory/BookFactory';
 import { HttpStatusCode } from 'jsax-rs';
 
 /**

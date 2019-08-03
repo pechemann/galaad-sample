@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { BooksRoutes } from '../routes/BooksRoutes';
-import { AppStateService } from '../util/AppStateService';
+import { AppStateService } from '../service/impl/AppStateService';
 import { ServiceContainer } from '../ioc/ServiceContainer';
 import { BookServiceMock } from '../../mock/BookServiceMock';
 
@@ -42,9 +42,10 @@ export class RoutesFactory {
     }
 
     /**
-     * Initialize services.
+     * Initialize all app services.
      */
     private initServices(): void {
+        this._container.register(new AppStateService());
         this._container.register(new BookServiceMock());
     }
 
@@ -52,7 +53,6 @@ export class RoutesFactory {
      * Create all app routes.
      */
     public createRoutes(): void {
-        const stateService: AppStateService = new AppStateService();
-        new BooksRoutes(this._container, this._router, stateService);
+        new BooksRoutes(this._container, this._router);
     }
 }
