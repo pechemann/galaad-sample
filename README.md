@@ -6,7 +6,7 @@
 
 ## Requirements
 
-Asteria Helios needs the following system parameters in order to work correctly:
+Galaad framework needs the following system parameters in order to work correctly:
 
 - npm 3+
 - TypeScript 3+
