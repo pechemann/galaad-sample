@@ -17,7 +17,7 @@
   "author": "Pascal ECHEMANN",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "jsax-rs": "1.0.0"
   },
   "devDependencies": {
